@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu painel | Vag.ai</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="js/admin-ui.js" defer></script>
+    <script src="js/painel.js" defer></script>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-900">
+    <header class="border-b border-slate-200 bg-white">
+        <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-5">
+            <a href="painel.html" class="text-2xl font-bold text-emerald-600">Vag.ai</a>
+
+            <nav aria-label="Navegação principal" class="flex flex-wrap items-center gap-3 sm:gap-6">
+                <a href="painel.html" aria-current="page"
+                    class="rounded-lg px-3 py-2 text-sm font-medium bg-emerald-50 text-emerald-700">Vagas</a>
+                <a id="users-nav-link" href="usuarios.html"  hidden
+                    class="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:text-emerald-600">Usuários e papéis</a>
+                <button id="logout-button" type="button"
+                    class="rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">Sair</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-6 py-12">
+        <p id="panel-message" role="status" aria-live="polite">
+            Carregando seu perfil...
+        </p>
+
+        <section id="profile-section" aria-labelledby="welcome-title" hidden>
+            <h1 id="welcome-title" class="text-3xl font-bold"></h1>
+
+            <p class="mt-3 text-slate-600">
+                Seu perfil:
+                <span id="user-role" class="font-semibold"></span>
+            </p>
+
+            <section class="mt-10" aria-labelledby="jobs-title">
+                <button id="create-job" type="button" hidden class="mb-5 rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700 disabled:opacity-50">Cadastrar vaga</button>
+                <h2 id="jobs-title" class="text-2xl font-bold">
+                    Vagas Abertas
+                </h2>
+
+                <p id="jobs-message" class="mt-3 text-slate-500" role="status">
+                    Carregando oportunidades...
+                </p>
+
+                <div id="jobs-list" class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2"></div>
+            </section>
+
+            <section id="applications-section" class="mt-12" aria-labelledby="applications-title" hidden>
+                <h2 id="applications-title" class="text-2xl font-bold">
+                    Minhas candidaturas
+                </h2>
+
+                <p id="applications-message" class="mt-3 text-slate-500" role="status"></p>
+
+                <div id="applications-list" class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2"></div>
+            </section>
+
+            <section id="candidates-section" class="mt-12" aria-labelledby="candidates-title" hidden>
+                <h2 id="candidates-title" class="text-2xl font-bold"></h2>
+
+                <p id="candidates-message" class="mt-3 text-slate-500" role="status" aria-live="polite"></p>
+
+                <div id="candidates-list" class="mt-6 grid grid-cols-1 gap-6"></div>
+            </section>
+
+        </section>
+    </main>
+
+    <template id="job-template">
+        <article class="rounded-xl border border-slate-200 bg-white p-6">
+            <span class="job-status rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
+                Vaga aberta
+            </span>
+
+            <div class="job-actions mt-5 flex flex-wrap gap-3" hidden>
+                <button type="button" class="edit-job rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-100 disabled:opacity-50">Editar</button>
+                <button type="button" class="delete-job rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-100 disabled:opacity-50 text-red-700">Excluir</button>
+            </div>
+            <p class="job-admin-message mt-2 text-sm text-red-700" role="status"></p>
+
+            <h3 class="job-title mt-4 text-xl font-bold"></h3>
+
+            <p class="job-description mt-3 whitespace-pre-line text-slate-600"></p>
+
+            <h4 class="mt-5 text-sm font-semibold">Requisitos</h4>
+
+            <ul class="job-requirements mt-2 list-disc space-y-1 pl-5 text-sm text-slate-600"></ul>
+
+            <form class="application-form mt-6 border-t border-slate-200 pt-5" hidden>
+                <label class="block text-sm font-medium text-slate-700">
+                    Seu currículo em PDF
+
+                    <input type="file" name="file" accept=".pdf,application/pdf" required
+                        class="mt-2 block w-full rounded-lg border border-slate-300 p-2 text-sm">
+                </label>
+
+                <p class="mt-2 text-xs text-slate-500">
+                    Seu currículo será analisado com IA para avaliar
+                    a compatibilidade com os requisitos da vaga.
+                </p>
+
+                <button type="submit"
+                    class="mt-4 rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50">
+                    Enviar candidatura
+                </button>
+
+                <p class="application-message mt-3 text-sm text-slate-600" role="status" aria-live="polite"></p>
+            </form>
+
+            <button type="button"
+                class="view-candidates mt-6 rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700"
+                hidden>
+                Ver candidatos
+            </button>
+        </article>
+    </template>
+
+    <template id="application-template">
+        <article class="rounded-xl border border-slate-200 bg-white p-6">
+            <h3 class="application-title text-xl font-bold"></h3>
+
+            <p class="mt-3 text-sm text-slate-600">
+                Situação:
+                <span class="application-status font-semibold"></span>
+            </p>
+
+            <p class="mt-2 text-sm text-slate-500">
+                Enviada em:
+                <span class="application-date"></span>
+            </p>
+        </article>
+    </template>
+
+    <template id="candidate-template">
+        <article class="rounded-xl border border-slate-200 bg-white p-6">
+            <h3 class="candidate-name text-xl font-bold"></h3>
+            <p class="candidate-email mt-1 text-sm text-slate-500"></p>
+
+            <p class="mt-4 text-sm">
+                Compatibilidade:
+                <span class="candidate-score font-semibold text-emerald-700"></span>
+            </p>
+
+            <p class="mt-2 text-sm">
+                Situação:
+                <span class="candidate-status font-semibold"></span>
+            </p>
+
+            <h4 class="mt-4 text-sm font-semibold">Parecer da IA</h4>
+            <p class="candidate-feedback mt-2 whitespace-pre-line text-sm text-slate-600"></p>
+
+            <div class="mt-5 flex flex-wrap gap-3">
+                <button type="button"
+                    class="hire-button rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50">
+                    Contratar
+                </button>
+
+                <button type="button"
+                    class="reject-button rounded-lg border border-slate-300 px-4 py-2 font-semibold text-slate-700 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50">
+                    Não selecionar
+                </button>
+            </div>
+
+            <p class="decision-message mt-3 text-sm text-slate-600" role="status" aria-live="polite"></p>
+        </article>
+    </template>
+
+
+    <dialog id="job-dialog" aria-labelledby="job-dialog-title" class="m-auto max-h-[90vh] w-[calc(100%-2rem)] max-w-xl overflow-y-auto rounded-2xl p-6 backdrop:bg-slate-900/40">
+        <h2 id="job-dialog-title" class="text-2xl font-bold"></h2>
+        <form id="job-editor" class="mt-5 space-y-4">
+            <label class="block text-sm font-medium">
+                Título
+                <input name="title" type="text" required class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50">
+            </label>
+            <label class="block text-sm font-medium">
+                Descrição
+                <textarea name="description" rows="4" required class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50"></textarea>
+            </label>
+            <label class="block text-sm font-medium">
+                Requisitos (um por linha)
+                <textarea name="requirements" rows="4" required class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50"></textarea>
+            </label>
+            <label class="block text-sm font-medium">
+                Recrutador responsável
+                <select name="recruiter_id" required class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50">
+                </select>
+            </label>
+            <label class="block text-sm font-medium">
+                Situação
+                <select name="status" required class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50">
+                    <option value="ABERTA">Aberta</option>
+                    <option value="CONCLUIDA">Concluída</option>
+                </select>
+            </label>
+            <p class="editor-message text-sm text-red-700" role="status" aria-live="polite"></p>
+            <div class="flex flex-wrap gap-3">
+                <button type="submit" class="rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700 disabled:opacity-50">Salvar</button>
+                <button type="button" class="cancel-editor rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-100 disabled:opacity-50">Cancelar</button>
+            </div>
+        </form>
+    </dialog>
+</body>
+
+</html>

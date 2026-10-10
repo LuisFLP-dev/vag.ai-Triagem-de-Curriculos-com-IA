@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar conta | Vag.ai</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="js/cadastro.js" defer></script>
+</head>
+
+<body class="flex min-h-screen flex-col bg-slate-50 text-slate-900">
+    <header class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
+        <a href="index.html" class="text-2xl font-bold text-emerald-600">
+            Vag.ai
+        </a>
+
+        <a href="index.html#email" class="text-sm text-slate-600 hover:text-emerald-600">
+            Já tenho conta
+        </a>
+    </header>
+
+    <main class="flex flex-1 items-center justify-center px-6 py-12">
+        <section class="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-lg"
+            aria-labelledby="register-title">
+            <h1 id="register-title" class="text-2xl font-bold">
+                Crie sua conta
+            </h1>
+
+            <p class="mt-2 text-sm text-slate-500">
+                Encontre oportunidades e acompanhe suas candidaturas.
+            </p>
+
+            <form id="register-form" method="post" class="mt-8 space-y-5">
+                <div>
+                    <label for="full_name" class="mb-2 block text-sm font-medium text-slate-700">
+                        Nome completo
+                    </label>
+
+                    <input type="text" id="full_name" name="full_name" autocomplete="name" required
+                        class="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100">
+                </div>
+
+                <div>
+                    <label for="email" class="mb-2 block text-sm font-medium text-slate-700">
+                        E-mail
+                    </label>
+
+                    <input type="email" id="email" name="email" autocomplete="email" required
+                        class="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100">
+                </div>
+
+                <div>
+                    <label for="password" class="mb-2 block text-sm font-medium text-slate-700">
+                        Senha
+                    </label>
+
+                    <input type="password" id="password" name="password" autocomplete="new-password" required
+                        class="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100">
+                </div>
+
+                <div>
+                    <label for="confirm_password" class="mb-2 block text-sm font-medium text-slate-700">
+                        Confirmar senha
+                    </label>
+
+                    <input type="password" id="confirm_password" name="confirm_password" autocomplete="new-password"
+                        required
+                        class="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100">
+                </div>
+
+                <p id="register-message" class="text-sm text-slate-600" role="status" aria-live="polite"></p>
+
+                <button type="submit" disabled
+                    class="w-full rounded-lg bg-emerald-600 px-4 py-3 font-semibold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50">
+                    Criar conta
+                </button>
+            </form>
+
+            <p class="mt-6 text-center text-sm text-slate-500">
+                Já possui uma conta?
+                <a href="index.html#email" class="font-medium text-emerald-600 hover:underline">
+                    Entrar
+                </a>
+            </p>
+        </section>
+    </main>
+</body>
+
+</html>

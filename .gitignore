@@ -1,0 +1,27 @@
+# Ambiente virtual
+.venv/
+venv/
+
+# Chaves e configurações locais
+.env
+.env.*
+!.env.example
+
+# Banco local
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+
+# Arquivos gerados pelo Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Dependências JavaScript
+node_modules/
+
+# Arquivos temporários e backups
+*.log
+*.bak
+*.md
