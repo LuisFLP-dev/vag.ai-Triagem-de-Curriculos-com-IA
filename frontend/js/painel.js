@@ -333,7 +333,7 @@ async function loadMyApplications() {
         const statusNames = {
             PENDENTE: "Em análise",
             CONTRATADO: "Contratado",
-            REJEITADO: "Não selecionado"
+            REJEITADO: "Rejeitado"
         };
 
         for (const application of applications) {
