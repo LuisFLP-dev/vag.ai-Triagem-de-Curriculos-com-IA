@@ -19,8 +19,9 @@
             <nav aria-label="Navegação principal" class="flex flex-wrap items-center gap-3 sm:gap-6">
                 <a href="painel.html" aria-current="page"
                     class="rounded-lg px-3 py-2 text-sm font-medium bg-emerald-50 text-emerald-700">Vagas</a>
-                <a id="users-nav-link" href="usuarios.html"  hidden
-                    class="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:text-emerald-600">Usuários e papéis</a>
+                <a id="users-nav-link" href="usuarios.html" hidden
+                    class="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:text-emerald-600">Usuários e
+                    papéis</a>
                 <button id="logout-button" type="button"
                     class="rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">Sair</button>
             </nav>
@@ -41,7 +42,9 @@
             </p>
 
             <section class="mt-10" aria-labelledby="jobs-title">
-                <button id="create-job" type="button" hidden class="mb-5 rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700 disabled:opacity-50">Cadastrar vaga</button>
+                <button id="create-job" type="button" hidden
+                    class="mb-5 rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700 disabled:opacity-50">Cadastrar
+                    vaga</button>
                 <h2 id="jobs-title" class="text-2xl font-bold">
                     Vagas Abertas
                 </h2>
@@ -81,8 +84,10 @@
             </span>
 
             <div class="job-actions mt-5 flex flex-wrap gap-3" hidden>
-                <button type="button" class="edit-job rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-100 disabled:opacity-50">Editar</button>
-                <button type="button" class="delete-job rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-100 disabled:opacity-50 text-red-700">Excluir</button>
+                <button type="button"
+                    class="edit-job rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-100 disabled:opacity-50">Editar</button>
+                <button type="button"
+                    class="delete-job rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-100 disabled:opacity-50 text-red-700">Excluir</button>
             </div>
             <p class="job-admin-message mt-2 text-sm text-red-700" role="status"></p>
 
@@ -165,7 +170,7 @@
 
                 <button type="button"
                     class="reject-button rounded-lg border border-slate-300 px-4 py-2 font-semibold text-slate-700 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50">
-                    Não selecionar
+                    Rejeitar
                 </button>
             </div>
 
@@ -174,37 +179,45 @@
     </template>
 
 
-    <dialog id="job-dialog" aria-labelledby="job-dialog-title" class="m-auto max-h-[90vh] w-[calc(100%-2rem)] max-w-xl overflow-y-auto rounded-2xl p-6 backdrop:bg-slate-900/40">
+    <dialog id="job-dialog" aria-labelledby="job-dialog-title"
+        class="m-auto max-h-[90vh] w-[calc(100%-2rem)] max-w-xl overflow-y-auto rounded-2xl p-6 backdrop:bg-slate-900/40">
         <h2 id="job-dialog-title" class="text-2xl font-bold"></h2>
         <form id="job-editor" class="mt-5 space-y-4">
             <label class="block text-sm font-medium">
                 Título
-                <input name="title" type="text" required class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50">
+                <input name="title" type="text" required
+                    class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50">
             </label>
             <label class="block text-sm font-medium">
                 Descrição
-                <textarea name="description" rows="4" required class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50"></textarea>
+                <textarea name="description" rows="4" required
+                    class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50"></textarea>
             </label>
             <label class="block text-sm font-medium">
                 Requisitos (um por linha)
-                <textarea name="requirements" rows="4" required class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50"></textarea>
+                <textarea name="requirements" rows="4" required
+                    class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50"></textarea>
             </label>
             <label class="block text-sm font-medium">
                 Recrutador responsável
-                <select name="recruiter_id" required class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50">
+                <select name="recruiter_id" required
+                    class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50">
                 </select>
             </label>
             <label class="block text-sm font-medium">
                 Situação
-                <select name="status" required class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50">
+                <select name="status" required
+                    class="mt-2 block w-full rounded-lg border border-slate-300 bg-white p-3 disabled:opacity-50">
                     <option value="ABERTA">Aberta</option>
                     <option value="CONCLUIDA">Concluída</option>
                 </select>
             </label>
             <p class="editor-message text-sm text-red-700" role="status" aria-live="polite"></p>
             <div class="flex flex-wrap gap-3">
-                <button type="submit" class="rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700 disabled:opacity-50">Salvar</button>
-                <button type="button" class="cancel-editor rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-100 disabled:opacity-50">Cancelar</button>
+                <button type="submit"
+                    class="rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700 disabled:opacity-50">Salvar</button>
+                <button type="button"
+                    class="cancel-editor rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-100 disabled:opacity-50">Cancelar</button>
             </div>
         </form>
     </dialog>

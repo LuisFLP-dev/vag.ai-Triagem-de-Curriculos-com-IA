@@ -426,7 +426,7 @@ async function loadCandidates(jobId, jobTitle) {
         const statusNames = {
             PENDENTE: "Em análise",
             CONTRATADO: "Contratado",
-            REJEITADO: "Não selecionado"
+            REJEITADO: "Rejeitado"
         };
 
         for (const candidate of candidates) {
@@ -493,7 +493,7 @@ async function updateApplicationStatus(candidate, newStatus, article) {
     const statusNames = {
         PENDENTE: "Em análise",
         CONTRATADO: "Contratado",
-        REJEITADO: "Não selecionado"
+        REJEITADO: "Rejeitado"
     };
 
     const confirmed = window.confirm(
